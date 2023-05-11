@@ -13,7 +13,7 @@ import {
   useTheme,
 } from "@mui/material";
 import {
-  SettingsOutlined,
+ 
   ChevronLeft,
   ChevronRightOutlined,
   HomeOutlined,
@@ -32,7 +32,9 @@ import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import FlexBetween from "./FlexBetween";
 import profileImage from "assets/CMaurice.jpg";
-import Logo from "assets/MobiOneLogo.png";
+
+
+
 
 const navItems = [
   {
@@ -131,18 +133,7 @@ const Sidebar = ({
           <Box width="100%">
             <Box m="1.5rem 2rem 2rem 3rem">
               <FlexBetween color={theme.palette.secondary.main}>
-                <Box 
-                display="flex" 
-                alignItems="center" 
                 
-                component="img"
-                alt="profile"
-                src={Logo}
-                height="30px"
-                width="110px"
-                
-                sx={{ backgroundColor: "white", objectFit: "cover" }}
-                />
                 {!isNonMobile && (
                   <IconButton onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
                     <ChevronLeft />

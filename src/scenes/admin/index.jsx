@@ -1,21 +1,20 @@
 import React from "react";
 import { Box, useTheme } from "@mui/material";
-import { useGetUserQuery } from "state/api";
+import { useGetCustomersQuery } from "state/api";
 import { DataGrid } from "@mui/x-data-grid";
 import Header from "components/Header";
 import CustomColumnMenu from "components/DataGridCustomColumnMenu";
+import LogoLight from "assets/MobiOneLogo.png";
+import LogoDark from "assets/MobiOneLogoDark.png";
 
 const Admin = () => {
   const theme = useTheme();
-  const { data, isLoading } = useGetUserQuery();
+  const isLightMode = theme.palette.mode === "light";
+  const Logo = isLightMode ? LogoLight : LogoDark;
+  const { data, isLoading } = useGetCustomersQuery();
 
   const columns = [
-    {
-      field: "_id",
-      headerName: "ID",
-      flex: 1,
-    },
-    {
+      {
       field: "firstName",
       headerName: "Firstname",
       flex: 0.5,
@@ -23,6 +22,11 @@ const Admin = () => {
     {
       field: "lastName",
       headerName: "lastName",
+      flex: 0.5,
+    },
+    {
+      field: "pseudo",
+      headerName: "Pseudo",
       flex: 0.5,
     },
     {
@@ -45,7 +49,18 @@ const Admin = () => {
 
   return (
     <Box m="1.5rem 2.5rem">
-      <Header title="ADMINS" subtitle="Managing admins and list of admins" />
+       <Box 
+                display="flex" 
+                alignItems="center" 
+                
+                component="img"
+                alt="profile"
+                src={Logo}
+                height="70px"
+                width="300px"
+                
+                sx={{  objectFit: "cover" }}
+                />
       <Box
         mt="40px"
         height="75vh"
