@@ -1,6 +1,6 @@
 import React from "react";
 import FlexBetween from "components/FlexBetween";
-import Header from "components/Header";
+
 import {
   DownloadOutlined,
   Email,
@@ -20,10 +20,13 @@ import BreakdownChart from "components/BreakdownChart";
 import OverviewChart from "components/OverviewChart";
 import { useGetDashboardQuery } from "state/api";
 import StatBox from "components/StatBox";
-import Logo from "assets/MobiOneLogo.png";
+import LogoLight from "assets/MobiOneLogo.png";
+import LogoDark from "assets/MobiOneLogoDark.png";
 
 const Dashboard = () => {
   const theme = useTheme();
+  const isLightMode = theme.palette.mode === "light";
+  const Logo = isLightMode ? LogoLight : LogoDark;
   const isNonMediumScreens = useMediaQuery("(min-width: 1200px)");
   const { data, isLoading } = useGetDashboardQuery();
 
@@ -71,7 +74,7 @@ const Dashboard = () => {
                 height="70px"
                 width="300px"
                 
-                sx={{ backgroundColor: "white", objectFit: "cover" }}
+                sx={{  objectFit: "cover" }}
                 />
 
         <Box>
