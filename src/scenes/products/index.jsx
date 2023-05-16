@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Box, useTheme } from "@mui/material";
-import { DataGrid, GridCellParams } from "@mui/x-data-grid";
+import { DataGrid } from "@mui/x-data-grid";
 import Header from "components/Header";
 import { useGetProductsQuery } from "state/api";
 import DataGridCustomToolbar from "components/DataGridCustomToolbar";
+
+
+
 
 const Products = () => {
   const theme = useTheme();
@@ -11,15 +14,24 @@ const Products = () => {
   const [page, setPage] = useState(0);
   const [pageSize, setPageSize] = useState(20);
   const [sort, setSort] = useState({});
-  const [search, setSearch] = useState("");
+  const [filteredData, setFilteredData] = useState([]);
 
   const [searchInput, setSearchInput] = useState("");
   const { data, isLoading } = useGetProductsQuery({
     page,
     pageSize,
     sort: JSON.stringify(sort),
-    search,
+    search: searchInput,
   });
+  useEffect(() => {
+    // Filtrer les données en fonction de la valeur de recherche
+    if (data) {
+      const filtered = data.filter((product) =>
+        product.Designation.includes(searchInput)
+      );
+      setFilteredData(filtered || []);
+    }
+  }, [data, searchInput, setFilteredData]);
 
   const columns = [
     {
@@ -50,13 +62,13 @@ const Products = () => {
       flex: 1,
     },
     {
-      field: "Famille",
-      headerName: "Famille",
+      field: "Rayon",
+      headerName: "Rayon",
       flex: 1,
     },
    {
   field: "Stock",
-  headerName: "Stock Rezomatic",
+  headerName: "Stock",
   flex: 1,
   cellClassName: (params) =>
     params.value <= 0 ? "negative-stock flash-warning" : "negative-stock",
@@ -116,10 +128,11 @@ const Products = () => {
           },
         }}
       >
+        
         <DataGrid
   loading={isLoading || !data}
   getRowId={(row) => row._id}
-  rows={data  || []}
+  rows={filteredData}
   columns={columns}
   rowCount={(data && data.total) || 0}
   rowsPerPageOptions={[20, 50, 100]}
@@ -133,7 +146,7 @@ const Products = () => {
   onSortModelChange={(newSortModel) => setSort(...newSortModel)}
   components={{ Toolbar: DataGridCustomToolbar }}
   componentsProps={{
-    toolbar: { searchInput, setSearchInput, setSearch },
+    toolbar: { searchInput, setSearchInput },
   }}
 />
           </Box>

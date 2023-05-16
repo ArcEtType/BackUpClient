@@ -17,9 +17,9 @@ import {
   ChevronLeft,
   ChevronRightOutlined,
   HomeOutlined,
-  ShoppingCartOutlined,
-  Groups2Outlined,
-  ReceiptLongOutlined,
+  InventoryOutlined,
+  TrendingFlatOutlined,
+  ReceiptOutlined,
   PublicOutlined,
   PointOfSaleOutlined,
   TodayOutlined,
@@ -47,15 +47,15 @@ const navItems = [
   },
   {
     text: "Stock",
-    icon: <ShoppingCartOutlined />,
+    icon: <InventoryOutlined />,
   },
   {
     text: "Customers",
-    icon: <Groups2Outlined />,
+    icon: <TrendingFlatOutlined />,
   },
   {
     text: "Transactions",
-    icon: <ReceiptLongOutlined />,
+    icon: <ReceiptOutlined />,
   },
   {
     text: "Geography",

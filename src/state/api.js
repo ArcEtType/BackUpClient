@@ -16,17 +16,30 @@ export const api = createApi({
   ],
   endpoints: (build) => ({
     getUser: build.query({
-      query: (id) => `general/user/${id}`,
+      query: (userId) => `general/user/${userId}`,
       providesTags: ["User"],
+    }),
+    getAllUsers: build.query({
+      query: () =>`user/`,
+      providesTags: ["AllUser"],
+
+    }),
+    getUserId: build.query({
+      query: (userId) =>`user/${userId}`,
+      providesTags: ["UserId"],
     }),
     getProducts: build.query({
       query: () => "client/products",
       providesTags: ["Products"],
     }),
-    getCustomers: build.query({
+    getAllCustomers: build.query({
       query: () => "client/customers",
-      providesTags: ["Customers"],
+      providesTags: ["AllCustomers"],
     }),
+    getCustomerById: build.query({
+       query: (email) => `client/customers/${email}`,
+       providesTags: ["Customers"],
+     }),
     getTransactions: build.query({
       query: ({ page, pageSize, sort, search }) => ({
         url: "client/transactions",
@@ -59,9 +72,12 @@ export const api = createApi({
 });
 
 export const {
+  useGetAllUsersQuery,
+  useGetUserIdQuery,
   useGetUserQuery,
   useGetProductsQuery,
   useGetCustomersQuery,
+  useGetAllCustomersQuery,
   useGetTransactionsQuery,
   useGetGeographyQuery,
   useGetSalesQuery,
