@@ -54,7 +54,7 @@ const RegisterPage = () => {
   
 
   return (
-    <Box m="1.5rem 2.5rem" display="flex" flexDirection="column" alignItems="center">
+    <Box m="1.5rem 2.5rem">
       <Formik
         initialValues={initialValuesRegister}
         validationSchema={registerSchema}
@@ -146,7 +146,7 @@ const RegisterPage = () => {
             </TextField>
             <Box>
             <Button type="submit" variant="contained" color="primary">
-              Ajouter
+              Modifier
             </Button>
             </Box>
           </form>

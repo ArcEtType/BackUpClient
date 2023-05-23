@@ -1,14 +1,14 @@
 import React from "react";
 import { Search } from "@mui/icons-material";
-import { IconButton, TextField, InputAdornment } from "@mui/material";
+import { IconButton, TextField, InputAdornment,Box } from "@mui/material";
 import {
   GridToolbarDensitySelector,
   GridToolbarContainer,
-  GridToolbarExport,
   GridToolbarColumnsButton,
 } from "@mui/x-data-grid";
 import FlexBetween from "./FlexBetween";
 
+import LoopIcon from '@mui/icons-material/Loop';
 
 
 const DataGridCustomToolbar = ({ searchInput, setSearchInput, setSearch, handleOpenModal }) => {
@@ -18,10 +18,20 @@ const DataGridCustomToolbar = ({ searchInput, setSearchInput, setSearch, handleO
       <FlexBetween>
           <GridToolbarColumnsButton />
           <GridToolbarDensitySelector />
-          <GridToolbarExport />
+          
         </FlexBetween>
         <FlexBetween>
-        
+        <Box
+            display="flex"
+            alignItems="center"
+            padding="0.5rem"
+            borderRadius="0.5rem"
+            backgroundColor="#f5f5f5"
+            color="#333"
+          >
+            <h1 style={{ margin: 0 }}>En cours</h1>
+            < LoopIcon />
+          </Box>
         </FlexBetween>
         <TextField
           label="Recherche..."

@@ -37,8 +37,8 @@ const Dashboard = () => {
       flex: 1,
     },
     {
-      field: "userId",
-      headerName: "User ID",
+      field: "Designation",
+      headerName: "Designation",
       flex: 1,
     },
     {
