@@ -20,11 +20,7 @@ const Customers = () => {
       headerName: "Name",
       flex: 0.5,
     },
-    {
-      field: "email",
-      headerName: "Email",
-      flex: 1,
-    },
+    
     {
       field: "phoneNumber",
       headerName: "Phone Number",

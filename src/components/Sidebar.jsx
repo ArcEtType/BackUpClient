@@ -17,16 +17,10 @@ import {
   ChevronLeft,
   ChevronRightOutlined,
   HomeOutlined,
-  ShoppingCartOutlined,
-  Groups2Outlined,
-  ReceiptLongOutlined,
-  PublicOutlined,
-  PointOfSaleOutlined,
-  TodayOutlined,
-  CalendarMonthOutlined,
+  InventoryOutlined,
+  ConstructionOutlined,
+  ReceiptOutlined,
   AdminPanelSettingsOutlined,
-  TrendingUpOutlined,
-  PieChartOutlined,
 } from "@mui/icons-material";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -42,45 +36,23 @@ const navItems = [
     icon: <HomeOutlined />,
   },
   {
-    text: "Client Facing",
+    text: "Applications",
     icon: null,
   },
   {
     text: "Stock",
-    icon: <ShoppingCartOutlined />,
+    icon: <InventoryOutlined />,
   },
   {
-    text: "Customers",
-    icon: <Groups2Outlined />,
+    text: "Reparation",
+    icon: <ConstructionOutlined />,
   },
   {
     text: "Transactions",
-    icon: <ReceiptLongOutlined />,
+    icon: <ReceiptOutlined />,
   },
-  {
-    text: "Geography",
-    icon: <PublicOutlined />,
-  },
-  {
-    text: "Sales",
-    icon: null,
-  },
-  {
-    text: "Overview",
-    icon: <PointOfSaleOutlined />,
-  },
-  {
-    text: "Daily",
-    icon: <TodayOutlined />,
-  },
-  {
-    text: "Monthly",
-    icon: <CalendarMonthOutlined />,
-  },
-  {
-    text: "Breakdown",
-    icon: <PieChartOutlined />,
-  },
+ 
+ 
   {
     text: "Management",
     icon: null,
@@ -89,10 +61,7 @@ const navItems = [
     text: "Admin",
     icon: <AdminPanelSettingsOutlined />,
   },
-  {
-    text: "Performance",
-    icon: <TrendingUpOutlined />,
-  },
+  
 ];
 
 const Sidebar = ({

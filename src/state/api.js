@@ -4,8 +4,13 @@ export const api = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: process.env.REACT_APP_BASE_URL }),
   reducerPath: "adminApi",
   tagTypes: [
+
+    "AllUser",
     "User",
-    "Products",
+    "DeleteUser",
+    "UpdateUser",
+    "AllProducts",
+    "Product",
     "Customers",
     "Transactions",
     "Geography",
@@ -13,20 +18,55 @@ export const api = createApi({
     "Admins",
     "Performance",
     "Dashboard",
+    
   ],
   endpoints: (build) => ({
+    getAllUsers: build.query({
+      query: () =>`/user`,
+      providesTags: ["AllUser"],
+    }),
+
     getUser: build.query({
-      query: (id) => `general/user/${id}`,
-      providesTags: ["User"],
+    query: (id) =>`user/${id}`,
+    providesTags: ["User"],
     }),
-    getProducts: build.query({
-      query: () => "client/products",
-      providesTags: ["Products"],
+
+    deleteUser: build.mutation({
+      query: (userId) => ({
+        url: `/user/${userId}`,
+        method: "DELETE",
+        providesTags: ["DeleteUser"]
+      }),
     }),
-    getCustomers: build.query({
+    updateUser: build.mutation({
+      query: (userId) => ({
+        url: `/user/${userId}`,
+        method: "PUT",
+        providesTags: ["UpdateUser"]
+      }),
+
+    }),
+    
+    getAllProducts: build.query({
+      query: () => "/product",
+      providesTags: ["AllProducts"],
+    }),
+
+    getProduct: build.query({
+      query: (id) => `/product/${id}`,
+      providesTags: ["Product"],
+    }),
+
+    getAllCustomers: build.query({
       query: () => "client/customers",
-      providesTags: ["Customers"],
+      providesTags: ["AllCustomers"],
     }),
+
+    getCustomerById: build.query({
+       query: (pseudo) => `client/customers/${pseudo}`,
+       providesTags: ["Customers"],
+     }),
+
     getTransactions: build.query({
       query: ({ page, pageSize, sort, search }) => ({
         url: "client/transactions",
@@ -35,22 +75,27 @@ export const api = createApi({
       }),
       providesTags: ["Transactions"],
     }),
+
     getGeography: build.query({
       query: () => "client/geography",
       providesTags: ["Geography"],
     }),
+
     getSales: build.query({
       query: () => "sales/sales",
       providesTags: ["Sales"],
     }),
+
     getAdmins: build.query({
       query: () => "management/admins",
       providesTags: ["Admins"],
     }),
+
     getUserPerformance: build.query({
       query: (id) => `management/performance/${id}`,
       providesTags: ["Performance"],
     }),
+
     getDashboard: build.query({
       query: () => "general/dashboard",
       providesTags: ["Dashboard"],
@@ -59,9 +104,14 @@ export const api = createApi({
 });
 
 export const {
+  useGetAllUsersQuery,
   useGetUserQuery,
-  useGetProductsQuery,
+  useDeleteUserMutation,
+  useUpdateUserMutation,
+  useGetAllProductsQuery,
+  useGetProductQuery,
   useGetCustomersQuery,
+  useGetAllCustomersQuery,
   useGetTransactionsQuery,
   useGetGeographyQuery,
   useGetSalesQuery,

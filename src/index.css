@@ -47,3 +47,12 @@ body,
   color: rgb(255, 153, 0);
   font-weight: bold;
 }
+
+.link {
+  color: white;
+  text-decoration: underline;
+}
+
+.link:visited {
+  color: white;
+}
